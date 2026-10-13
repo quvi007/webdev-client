@@ -19,7 +19,10 @@ export default function CourseNavigation({ cid }: { cid: string }) {
   return (
     <div id="wd-courses-navigation" className="wd list-group rounded-none text-lg">
       {LINKS.map((label) => {
-        const slug = label.toLowerCase();
+        let slug = label.toLowerCase();
+        if (slug === "people") {
+            slug = "people/table";
+        }
         const href = `/courses/${cid}/${slug}`;
         const active = pathname === href || pathname.startsWith(href + "/");
         return (
