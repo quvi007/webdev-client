@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function TOC() {
     return (
         <div id="wd-toc">
-            <h2>Mehbubul Hasan</h2>
+            <h2>Mehbubul Hasan Al-Quvi</h2>
             <p><i>Seize the day!</i></p>
             <ul>
                 <li>

@@ -4,6 +4,7 @@ export default function Labs() {
   return (
     <div id="wd-labs">
       <h1>Labs</h1>
+      <h2 id="wd-full-name">Mehbubul Hasan Al-Quvi</h2>
       <ul>
         <li>
           <Link href="/labs/lab1">Lab 1: HTML Examples</Link>
@@ -19,6 +20,19 @@ export default function Labs() {
         </li>
         <li>
           <Link href="/labs/lab5">Lab 5: Next.js Fundamentals</Link>
+        </li>
+        <li>
+          <Link href="/">Kambaz</Link>
+        </li>
+        <li>
+          <a
+            href="https://github.com/quvi007/webdev-client"
+            id="wd-github"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub repository
+          </a>
         </li>
       </ul>
     </div>
