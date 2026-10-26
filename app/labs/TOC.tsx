@@ -26,22 +26,34 @@ const activeStyle = {
 export default function TOC() {
   const pathname = usePathname() ?? "";
   return (
-    <ul>
-      {LINKS.map((link) => {
-        const active = link.match(pathname);
-        return (
-          <li key={link.id}>
-            <Link
-              href={link.href}
-              id={link.id}
-              style={active ? activeStyle : undefined}
-              aria-current={active ? "page" : undefined}
-            >
-              {link.label}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <div id="wd-toc">
+      <h2>Mehbubul Hasan Al-Quvi</h2>
+      <p><i>Seize the day!</i></p>
+      <a
+        href="https://github.com/quvi007/webdev-client"
+        id="wd-github"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub repository
+      </a>
+      <ul>
+        {LINKS.map((link) => {
+          const active = link.match(pathname);
+          return (
+            <li key={link.id}>
+              <Link
+                href={link.href}
+                id={link.id}
+                style={active ? activeStyle : undefined}
+                aria-current={active ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
