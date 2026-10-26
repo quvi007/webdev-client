@@ -1,14 +1,15 @@
+"use client";
+
+import { useParams } from "next/navigation";
 import Module from "./Module";
 import Lesson from "./Lesson";
+import * as db from "../../../database";
 
 export default function Modules() {
+  const { cid } = useParams();
+  const modules = db.modules.filter((module) => module.course === cid);
   return (
     <div>
-      {/* <button>Collapse All</button> <button>View Progress</button>{" "}
-      <select defaultValue="publish-all">
-        <option value="publish-all">Publish All</option>
-      </select>{" "}
-      <button>+ Module</button> */}
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -27,6 +28,7 @@ export default function Modules() {
           className="rounded border border-neutral-300 bg-white px-3 py-1.5 text-sm"
         >
           <option value="publish-all">Publish All</option>
+          <option value="unpublish-all">Unpublish All</option>
         </select>
         <button
           type="button"
@@ -35,96 +37,14 @@ export default function Modules() {
           + Module
         </button>
       </div>
-      <ul id="wd-modules">
-        <Module title="Week 1, Lecture 1 - Course Introduction, Syllabus, Agenda">
-          <Lesson title="LEARNING OBJECTIVES">
-            <li className="wd-content-item">Introduction to the course</li>
-            <li className="wd-content-item">Learn what is Web Development</li>
-          </Lesson>
-          <Lesson title="READING">
-            <li className="wd-content-item">
-              Full Stack Developer - Chapter 1 - Introduction
-            </li>
-            <li className="wd-content-item">
-              Full Stack Developer - Chapter 2 - Creating User Interfaces
-            </li>
-          </Lesson>
-          <Lesson title="SLIDES">
-            <li className="wd-content-item">Introduction to Web Development</li>
-            <li className="wd-content-item">
-              Creating an HTTP server with Node.js
-            </li>
-            <li className="wd-content-item">Creating a React Application</li>
-          </Lesson>
-        </Module>
-        <Module title="Week 2, Lecture 2 - HTML Documents and Forms">
-          <Lesson title="LEARNING OBJECTIVES">
-            <li className="wd-content-item">
-              Structure a page with headings, paragraphs, lists, and tables
-            </li>
-            <li className="wd-content-item">
-              Link pages together with anchors and embed images
-            </li>
-            <li className="wd-content-item">
-              Collect user input with forms, inputs, selects, and buttons
-            </li>
-          </Lesson>
-          <Lesson title="READING">
-            <li className="wd-content-item">
-              Full Stack Developer - Chapter 3 - HTML
-            </li>
-          </Lesson>
-          <Lesson title="SLIDES">
-            <li className="wd-content-item">Introduction to HTML</li>
-            <li className="wd-content-item">HTML Forms and Input Types</li>
-            <li className="wd-content-item">
-              Building Pages with Next.js Routing
-            </li>
-          </Lesson>
-        </Module>
-        <Module title="Week 3, Lecture 3 - Styling with CSS and Bootstrap">
-          <Lesson title="LEARNING OBJECTIVES">
-            <li className="wd-content-item">
-              Apply styles with selectors, colors, and the box model
-            </li>
-            <li className="wd-content-item">
-              Lay out pages with flexbox, grid, and positioning
-            </li>
-            <li className="wd-content-item">
-              Build responsive layouts with Bootstrap
-            </li>
-          </Lesson>
-          <Lesson title="READING">
-            <li className="wd-content-item">
-              Full Stack Developer - Chapter 4 - CSS
-            </li>
-          </Lesson>
-          <Lesson title="SLIDES">
-            <li className="wd-content-item">Introduction to CSS</li>
-            <li className="wd-content-item">
-              The Box Model, Flexbox, and Grid
-            </li>
-            <li className="wd-content-item">
-              Responsive Design with Bootstrap
-            </li>
-          </Lesson>
-        </Module>
-        <Module title="Week 4, Lecture 4 - Tailwind CSS and React Icons">
-          <Lesson title="LEARNING OBJECTIVES">
-            <li className="wd-content-item">
-              Style components with Tailwind utility classes
-            </li>
-            <li className="wd-content-item">
-              Use breakpoint prefixes like md: and lg: for responsive layouts
-            </li>
-            <li className="wd-content-item">
-              Add icons to the Kambaz navigation with React Icons
-            </li>
-          </Lesson>
-        </Module>
-        <Module title="Sample module (AI)">
-          <Lesson title="Sample lesson (AI)" />
-        </Module>
+      <ul id="wd-modules" className="m-0 list-none p-0">
+        {modules.map((module) => (
+          <Module key={module._id} title={module.name}>
+            {module.lessons?.map((lesson) => (
+              <Lesson key={lesson._id} title={lesson.name} />
+            ))}
+          </Module>
+        ))}
       </ul>
     </div>
   );
