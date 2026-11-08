@@ -11,6 +11,7 @@ const emptyCourse: Course = {
   number: "New Number",
   startDate: "2023-09-10",
   endDate: "2023-12-15",
+  term: "Fall 2023",
   department: "D123",
   credits: 4,
   description: "New Description",
